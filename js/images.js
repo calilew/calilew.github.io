@@ -1,4 +1,4 @@
-var PageURL = ‘calilew.github.io’
+var PageURL = ‘http://calilew.github.io’
 
 var fashionImages = [];
 var portraitImages = [];

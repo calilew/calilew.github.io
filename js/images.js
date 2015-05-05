@@ -1,4 +1,4 @@
-var PageURL = 'https://github.com/calilew/calilew.github.io/tree/master/'
+var PageURL = 'https://github.com/calilew/calilew.github.io/tree/master'
 
 var fashionImages = [];
 var portraitImages = [];

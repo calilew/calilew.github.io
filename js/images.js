@@ -1,4 +1,4 @@
-var PageURL = ‘http://calilew.github.io’
+var PageURL = 'http://calilew.github.io'
 
 var fashionImages = [];
 var portraitImages = [];
@@ -34,7 +34,3 @@ $.ajax({
      pageReload()
   }
 });
-
-function pageReload(){
-  React.render(<Page fashionImages={fashionImages} portraitImages={portraitImages} travelImages={travelImages}/>,document.getElementById('main'));
-}

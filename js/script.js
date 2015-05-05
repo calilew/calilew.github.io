@@ -75,7 +75,7 @@ var Footer = React.createClass({
   }
 });
 
-React.render(<Page />,document.getElementById('main'));
+React.render(<Page fashionImages={fashionImages} portraitImages={portraitImages} travelImages={travelImages}/>,document.getElementById('main'));
 
 function pageReload(){
   React.render(<Page fashionImages={fashionImages} portraitImages={portraitImages} travelImages={travelImages}/>,document.getElementById('main'));

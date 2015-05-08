@@ -30,6 +30,7 @@ var ImageGallery = React.createClass({
     return {selectedGenre: [this.props.images.thumb.fashion, this.props.images.large.fashion], selectedThumb: 0}
   },
   handleGenre: function(e){
+    this.setState({selectedGenre: []});
     if(e.target.id == 1){
       this.setState({selectedGenre: [this.props.images.thumb.fashion, this.props.images.large.fashion]})
     }else if(e.target.id == 2){

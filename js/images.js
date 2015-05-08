@@ -37,15 +37,15 @@ function preloadImage(url)
 }
 for(i in images.thumb.fashionImages){
   preloadImage(images.thumb.fashion[i])
-  preloadImage(images.large.fashion[i])
+  // preloadImage(images.large.fashion[i])
 }
 for(j in images.thumb.portaits){
   preloadImage(images.thumb.portraits[j])
-  preloadImage(images.large.portraits[j])
+  // preloadImage(images.large.portraits[j])
 }
 for(k in images.thumb.travel){
   preloadImage(images.thumb.travel[k])
-  preloadImage(images.large.travel[k])
+  // preloadImage(images.large.travel[k])
 }
 // $.ajax({
 //   url: PageURL+"/img/fashion",

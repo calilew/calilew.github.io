@@ -3,12 +3,12 @@ var PageURL = 'http://calilew.github.io'
 var images = {
   large: {
     fashion:[],
-    portaits:[],
+    portraits:[],
     travel:[]
   },
   thumb: {
     fashion:[],
-    portaits:[],
+    portraits:[],
     travel:[]
   }
 }

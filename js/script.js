@@ -33,7 +33,7 @@ var ImageGallery = React.createClass({
     if(e.target.id == 1){
       this.setState({selectedGenre: [this.props.images.thumb.fashion, this.props.images.large.fashion]})
     }else if(e.target.id == 2){
-      this.setState({selectedGenre: [this.props.images.thumb.portraits, this.props.images.large.Portraits]})
+      this.setState({selectedGenre: [this.props.images.thumb.portraits, this.props.images.large.portraits]})
     }else if(e.target.id == 3){
       this.setState({selectedGenre: [this.props.images.thumb.travel, this.props.images.large.travel]})
     }

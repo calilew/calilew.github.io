@@ -21,32 +21,32 @@ for(i = 1; i <= numFashion; i++){
   images.large.fashion.push(PageURL+'/img/fashion/large/'+i+'.jpg');
   images.thumb.fashion.push(PageURL+'/img/fashion/'+i+'.jpg');
 }
-for(i = 1; i <= numPortraits; i++){
-  images.large.portaits.push(PageURL+'/img/portraits/large/'+i+'.jpg');
-  images.thumb.portaits.push(PageURL+'/img/portraits/'+i+'.jpg');
+for(j = 1; j <= numPortraits; j++){
+  images.large.portraits.push(PageURL+'/img/portraits/large/'+j+'.jpg');
+  images.thumb.portraits.push(PageURL+'/img/portraits/'+j+'.jpg');
 }
-for(i = 1; i <= numTravel; i++){
-  images.large.travel.push(PageURL+'/img/travel/large/'+i+'.jpg');
-  images.thumb.travel.push(PageURL+'/img/travel/'+i+'.jpg');
+for(k = 1; k <= numTravel; k++){
+  images.large.travel.push(PageURL+'/img/travel/large/'+k+'.jpg');
+  images.thumb.travel.push(PageURL+'/img/travel/'+k+'.jpg');
 }
 
-function preloadImage(url)
-{
-    var img=new Image();
-    img.src=url;
-}
-for(i in images.thumb.fashionImages){
-  preloadImage(images.thumb.fashion[i])
-  // preloadImage(images.large.fashion[i])
-}
-for(j in images.thumb.portaits){
-  preloadImage(images.thumb.portraits[j])
-  // preloadImage(images.large.portraits[j])
-}
-for(k in images.thumb.travel){
-  preloadImage(images.thumb.travel[k])
-  // preloadImage(images.large.travel[k])
-}
+// function preloadImage(url)
+// {
+//     var img=new Image();
+//     img.src=url;
+// }
+// for(l in images.thumb.fashionImages){
+//   preloadImage(images.thumb.fashion[i])
+//   // preloadImage(images.large.fashion[i])
+// }
+// for(m in images.thumb.portaits){
+//   preloadImage(images.thumb.portraits[j])
+//   // preloadImage(images.large.portraits[j])
+// }
+// for(n in images.thumb.travel){
+//   preloadImage(images.thumb.travel[k])
+//   // preloadImage(images.large.travel[k])
+// }
 // $.ajax({
 //   url: PageURL+"/img/fashion",
 //   success: function(data){

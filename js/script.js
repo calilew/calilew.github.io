@@ -1,9 +1,11 @@
+
+
 var Page = React.createClass({
   render: function(){
     return(
       <div className="page-wrapper">
         <Header  />
-        <ImageGallery fashionImages={this.props.fashionImages} portraitImages={this.props.portraitImages} travelImages={this.props.travelImages}/>
+        <ImageGallery images={this.props.images}/>
         <Footer />
       </div>
     )
@@ -17,7 +19,7 @@ var Header = React.createClass({
           <h1>CALI<span className="logo">LEW</span></h1>
           <p>I am a London based photographer currently in Melbourne
           if you like my work or want to chat drop me an email
-          <br/><a href="mailto:hello@cali-lew.com?subject=hello">hello@cali-lew.com</a></p>
+          <br/><a href="mailto:prettyponies888@hotmail.com?subject=hello">prettyponies888@hotmail</a></p>
         </div>
       </div>
     )
@@ -25,15 +27,15 @@ var Header = React.createClass({
 });
 var ImageGallery = React.createClass({
   getInitialState: function(){
-    return {selectedGenre: this.props.fashionImages,selectedThumb: 0}
+    return {selectedGenre: [this.props.images.thumb.fashionImages, this.props.images.large.fashionImages], selectedThumb: 0}
   },
   handleGenre: function(e){
     if(e.target.id == 1){
-      this.setState({selectedGenre: this.props.fashionImages})
+      this.setState({selectedGenre: [this.props.images.thumb.fashionImages, this.props.images.large.fashionImages]})
     }else if(e.target.id == 2){
-      this.setState({selectedGenre: this.props.portraitImages})
+      this.setState({selectedGenre: [this.props.images.thumb.portraitImages, this.props.images.large.portraitImages]})
     }else if(e.target.id == 3){
-      this.setState({selectedGenre: this.props.travelImages})
+      this.setState({selectedGenre: [this.props.images.thumb.travelImages, this.props.images.large.travelImages]})
     }
     this.setState({selectedThumb: 0});
   },
@@ -42,10 +44,11 @@ var ImageGallery = React.createClass({
   },
   render: function(){
     var that = this;
-    var imageList = this.state.selectedGenre.map(function(url, i){
+    var thumbList = this.state.selectedGenre[0].map(function(url, i){
       return <img src={url} onClick={that.handleSelect} className="image-thumb" id={i} />
     });
-    var imageLarge = this.state.selectedGenre[this.state.selectedThumb];
+    var imageLarge = this.state.selectedGenre[1][this.state.selectedThumb];
+    // var styleLarge = {maxHeight:window.innerHeight}
     return (
       <div>
         <div className="nav-bar">
@@ -55,10 +58,10 @@ var ImageGallery = React.createClass({
         </div>
         <div className="gallery-wrapper">
           <div className="gallery-scroll">
-            {imageList}
+            {thumbList}
           </div>
           <div ref="gl" className="gallery-large">
-            <img className="image-large" src={imageLarge} />
+            <img className="image-large" id='imageid' src={imageLarge} />
           </div>
         </div>
       </div>
@@ -75,8 +78,8 @@ var Footer = React.createClass({
   }
 });
 
-React.render(<Page fashionImages={fashionImages} portraitImages={portraitImages} travelImages={travelImages}/>,document.getElementById('main'));
+React.render(<Page images={images} />,document.getElementById('main'));
 
 function pageReload(){
-  React.render(<Page fashionImages={fashionImages} portraitImages={portraitImages} travelImages={travelImages}/>,document.getElementById('main'));
+  React.render(<Page images={images}/>,document.getElementById('main'));
 }

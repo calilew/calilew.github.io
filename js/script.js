@@ -27,15 +27,15 @@ var Header = React.createClass({
 });
 var ImageGallery = React.createClass({
   getInitialState: function(){
-    return {selectedGenre: [this.props.images.thumb.fashionImages, this.props.images.large.fashionImages], selectedThumb: 0}
+    return {selectedGenre: [this.props.images.thumb.fashion, this.props.images.large.fashion], selectedThumb: 0}
   },
   handleGenre: function(e){
     if(e.target.id == 1){
-      this.setState({selectedGenre: [this.props.images.thumb.fashionImages, this.props.images.large.fashionImages]})
+      this.setState({selectedGenre: [this.props.images.thumb.fashion, this.props.images.large.fashion]})
     }else if(e.target.id == 2){
-      this.setState({selectedGenre: [this.props.images.thumb.portraitImages, this.props.images.large.portraitImages]})
+      this.setState({selectedGenre: [this.props.images.thumb.portrait, this.props.images.large.portrait]})
     }else if(e.target.id == 3){
-      this.setState({selectedGenre: [this.props.images.thumb.travelImages, this.props.images.large.travelImages]})
+      this.setState({selectedGenre: [this.props.images.thumb.travel, this.props.images.large.travel]})
     }
     this.setState({selectedThumb: 0});
   },

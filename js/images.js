@@ -1,15 +1,15 @@
-var PageURL = 'http://calilew.github.io';
+var PageURL = 'http://10.0.0.85:5757'
 
 var images = {
   large: {
-    fashionImages:[],
-    portraitImages:[],
-    travelImages:[]
+    fashion:[],
+    portaits:[],
+    travel:[]
   },
   thumb: {
-    fashionImages:[],
-    portraitImages:[],
-    travelImages:[]
+    fashion:[],
+    portaits:[],
+    travel:[]
   }
 }
 
@@ -18,16 +18,31 @@ var numPortraits = 17;
 var numTravel = 23;
 
 for(i = 1; i <= numFashion; i++){
-  images.large.fashionImages.push(PageURL+'/img/fashion/large/'+i+'.jpg');
-  images.thumb.fashionImages.push(PageURL+'/img/fashion/'+i+'.jpg');
+  images.large.fashion.push(PageURL+'/img/fashion/large/'+i+'.jpg');
+  images.thumb.fashion.push(PageURL+'/img/fashion/'+i+'.jpg');
 }
 for(i = 1; i <= numPortraits; i++){
-  images.large.portraitImages.push(PageURL+'/img/portraits/large/'+i+'.jpg');
-  images.thumb.portraitImages.push(PageURL+'/img/portraits/'+i+'.jpg');
+  images.large.portaits.push(PageURL+'/img/portraits/large/'+i+'.jpg');
+  images.thumb.portaits.push(PageURL+'/img/portraits/'+i+'.jpg');
 }
 for(i = 1; i <= numTravel; i++){
-  images.large.travelImages.push(PageURL+'/img/travel/large/'+i+'.jpg');
-  images.thumb.travelImages.push(PageURL+'/img/travel/'+i+'.jpg');
+  images.large.travel.push(PageURL+'/img/travel/large/'+i+'.jpg');
+  images.thumb.travel.push(PageURL+'/img/travel/'+i+'.jpg');
+}
+
+function preloadImage(url)
+{
+    var img=new Image();
+    img.src=url;
+}
+for(i in images.thumb.fashionImages){
+  preloadImage(images.thumb.fashion[i])
+}
+for(j in images.thumb.portaits){
+  preloadImage(images.thumb.portraits[j])
+}
+for(k in images.thumb.travel){
+  preloadImage(images.thumb.travel[k])
 }
 // $.ajax({
 //   url: PageURL+"/img/fashion",

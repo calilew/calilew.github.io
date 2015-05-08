@@ -29,24 +29,23 @@ for(k = 1; k <= numTravel; k++){
   images.large.travel.push(PageURL+'/img/travel/large/'+k+'.jpg');
   images.thumb.travel.push(PageURL+'/img/travel/'+k+'.jpg');
 }
-
-function preloadImage(url)
-{
-    var img=new Image();
-    img.src=url;
-}
-for(l in images.thumb.fashion){
-  preloadImage(images.thumb.fashion[l])
-  preloadImage(images.large.fashion[l])
-}
-for(m in images.thumb.portraits){
-  preloadImage(images.thumb.portraits[m])
-  preloadImage(images.large.portraits[m])
-}
-for(n in images.thumb.travel){
-  preloadImage(images.thumb.travel[n])
-  preloadImage(images.large.travel[n])
-}
+// function preloadImage(url)
+// {
+//     var img=new Image();
+//     img.src=url;
+// }
+// for(l in images.thumb.fashion){
+//   preloadImage(images.thumb.fashion[l])
+//   preloadImage(images.large.fashion[l])
+// }
+// for(m in images.thumb.portraits){
+//   preloadImage(images.thumb.portraits[m])
+//   preloadImage(images.large.portraits[m])
+// }
+// for(n in images.thumb.travel){
+//   preloadImage(images.thumb.travel[n])
+//   preloadImage(images.large.travel[n])
+// }
 // $.ajax({
 //   url: PageURL+"/img/fashion",
 //   success: function(data){

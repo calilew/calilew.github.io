@@ -97,12 +97,13 @@ function pageReload(){
   React.render(<Page images={images}/>,document.getElementById('main'));
 }
 
+
 $('.image-thumb').click(function(){
-  $('.image-thumb').css({margin: '1rem', maxHeight: '8rem'})
-  $(this).css({margin: '0rem', maxHeight: '10rem'})
+  $('.image-thumb').removeClass('thumbExpand')
+  $(this).addClass('thumbExpand')
 });
 $('.nav-bar > div > h2').click(function(){
-  $('.nav-bar > div > h2').css({textDecoration: 'none'});
-  $(this).css({textDecoration: 'underline'});
+  $('.nav-bar > div > h2').removeClass('textUnderline')
+  $(this).addClass('textUnderline')
   console.log('f')
 })

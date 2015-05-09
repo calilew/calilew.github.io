@@ -63,7 +63,6 @@ body, html {
     /* background-color: grey; */
     float: left; }
     .nav-bar div h2 {
-      text-decoration: inherit;
       position: relative;
       font-family: 'clearSansM';
       text-align: center;
@@ -79,6 +78,8 @@ body, html {
       cursor: pointer; }
       .nav-bar div h2:hover {
         text-decoration: underline; }
+    .nav-bar div .textUnderline {
+      text-decoration: underline; }
 
 .gallery-wrapper {
   width: 90%;
@@ -95,15 +96,16 @@ body, html {
     white-space: nowrap; }
     .gallery-wrapper .gallery-scroll .image-thumb {
       margin: 1rem;
-      /* display: inline; */
       max-height: 8rem;
       width: auto;
       transition: .3s; }
       .gallery-wrapper .gallery-scroll .image-thumb:hover {
         margin: 0;
         max-height: 10rem;
-        /*         border: 1rem solid $black;
-        border-right: .1rem solid $black; */ }
+        cursor: pointer; }
+    .gallery-wrapper .gallery-scroll .thumbExpand {
+      margin: 0 !important;
+      max-height: 10rem !important; }
   .gallery-wrapper .gallery-large {
     width: 100%;
     min-height: 0;

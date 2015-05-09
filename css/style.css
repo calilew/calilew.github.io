@@ -98,7 +98,7 @@ body, html {
     .gallery-wrapper .gallery-large .image-large {
       position: relative;
       /* margin-left: 50%; */
-      max-width: 100%; }
+      min-width: 100%; }
 
 .footer {
   background-color: #232323;

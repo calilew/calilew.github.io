@@ -27,10 +27,12 @@ var Header = React.createClass({
 });
 var ImageGallery = React.createClass({
   getInitialState: function(){
-    return {selectedGenre: [this.props.images.thumb.fashion, this.props.images.large.fashion], selectedThumb: 0}
+    return {
+      selectedGenre: [this.props.images.thumb.fashion, this.props.images.large.fashion],
+      selectedThumb: 0
+    }
   },
   handleGenre: function(e){
-    console.log(loadedImages);
     this.setState({selectedGenre: []});
     if(e.target.id == 1){
       this.setState({selectedGenre: [this.props.images.thumb.fashion, this.props.images.large.fashion]})
@@ -60,7 +62,6 @@ var ImageGallery = React.createClass({
     }
     imageList();
     var imageLarge = this.state.selectedGenre[1][this.state.selectedThumb];
-    // var styleLarge = {maxHeight:window.innerHeight};
     return (
       <div>
         <div className="nav-bar">
@@ -95,3 +96,13 @@ React.render(<Page images={images} />,document.getElementById('main'));
 function pageReload(){
   React.render(<Page images={images}/>,document.getElementById('main'));
 }
+
+$('.image-thumb').click(function(){
+  $('.image-thumb').css({margin: '1rem', maxHeight: '8rem'})
+  $(this).css({margin: '0rem', maxHeight: '10rem'})
+});
+$('.nav-bar > div > h2').click(function(){
+  $('.nav-bar > div > h2').css({textDecoration: 'none'});
+  $(this).css({textDecoration: 'underline'});
+  console.log('f')
+})

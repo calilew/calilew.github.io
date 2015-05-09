@@ -1,12 +1,12 @@
 @font-face {
-  font-family: 'John';
-  src: url("../fonts/BIGJOHN.otf") format("opentype"); }
-@font-face {
   font-family: 'Joe';
   src: url("../fonts/SlimJoe.otf") format("opentype"); }
 @font-face {
-  font-family: 'Cour';
-  src: url("../fonts/CourierPrime.ttf") format("truetype"); }
+  font-family: 'clearSansL';
+  src: url("../fonts/ClearSans-Light.ttf") format("truetype"); }
+@font-face {
+  font-family: 'clearSansM';
+  src: url("../fonts/ClearSans-Medium.ttf") format("truetype"); }
 body, html {
   margin: 0;
   padding: 0;
@@ -47,13 +47,13 @@ body, html {
         opacity: .5;
         right: .5rem; }
     .header div p {
-      font-family: 'Cour';
+      font-family: 'clearSansL';
       font-spacing: 1rem;
-      line-height: 2.5rem; }
+      line-height: 3.5rem; }
 
 .nav-bar {
   width: 80%;
-  margin: 2rem auto;
+  margin: 3rem auto 1rem auto;
   height: 3rem;
   transition: .3s; }
   .nav-bar div {
@@ -64,7 +64,7 @@ body, html {
     float: left; }
     .nav-bar div h2 {
       position: relative;
-      font-family: 'Cour';
+      font-family: 'clearSansM';
       text-align: center;
       font-size: 1rem;
       font-weight: normal;
@@ -144,6 +144,8 @@ body, html {
       width: 60%; }
       .header div h1 {
         font-size: 4rem !important; }
+      .header div p {
+        line-height: 2.8rem; }
 
   .nav-bar {
     width: 90%; }
@@ -185,6 +187,8 @@ body, html {
     width: 90%; }
     .header div h1 {
       font-size: 3rem !important; }
+    .header div p {
+      line-height: 3.5rem; }
 
   .nav-bar {
     width: 90%; }

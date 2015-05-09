@@ -39,10 +39,10 @@ function preloader() {
     loadedImages[loadedImageIndex].src = url;
     loadedImageIndex ++
   }
-  // for(l in images.thumb.fashion){
-  //   preloadImage(images.thumb.fashion[l])
-  //   preloadImage(images.large.fashion[l])
-  // }
+  for(l in images.thumb.fashion){
+    // preloadImage(images.thumb.fashion[l])
+    preloadImage(images.large.fashion[l])
+  }
   for(m in images.thumb.portraits){
     preloadImage(images.thumb.portraits[m])
     preloadImage(images.large.portraits[m])

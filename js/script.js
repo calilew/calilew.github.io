@@ -19,7 +19,7 @@ var Header = React.createClass({
           <h1>CALI<span className="logo">LEW</span></h1>
           <p>I am a London based photographer currently in Melbourne
           if you like my work or want to chat drop me an email
-          <br/><a href="mailto:hello@cali-lew.com?subject=hello">hello@cali-lew.com</a></p>
+          <br/><a href="mailto:enquiries@cali-lew.com?subject=hello">hello@cali-lew.com</a></p>
         </div>
       </div>
     )

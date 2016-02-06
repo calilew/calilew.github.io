@@ -1,0 +1,19 @@
+.header-wrapper {
+  h1 {
+    letter-spacing: 3px;
+    text-align: center;
+    font-size: 5rem;
+    margin: 1rem 0rem;
+    line-height: 5.5rem;
+
+    @media only screen and (min-width: 400px) {
+      margin: 5rem 0rem;
+    }
+    @media only screen and (min-width: 760px) {
+      margin: 8rem 0rem;
+    }
+    @media only screen and (min-width: 1000px) {
+      margin: 10rem 0rem;
+    }
+  }
+}

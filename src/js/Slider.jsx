@@ -36,10 +36,10 @@ export default class Slider extends Component {
     return (
       <div className='slider-wrapper'>
         <div className='btn x-btn' onClick={() => toggleView()}>
-          <img src='img/x-btn.png'></img>
+          <img src='dist/img/x-btn.png'></img>
         </div>
         <div className='btn arr larr-btn'
-          onClick={() => handleSelect(selected - 1)}><img src='img/larr-btn.png'></img></div>
+          onClick={() => handleSelect(selected - 1)}><img src='dist/img/larr-btn.png'></img></div>
 
         <Motion
           defaultStyle={{ opacity: 0 }}
@@ -57,7 +57,7 @@ export default class Slider extends Component {
 
         <div
           className='btn arr rarr-btn'
-          onClick={() => this.handleRightClick()}><img src='img/rarr-btn.png'></img></div>
+          onClick={() => this.handleRightClick()}><img src='dist/img/rarr-btn.png'></img></div>
       </div>
     )
   }

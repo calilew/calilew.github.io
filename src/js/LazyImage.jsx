@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { findDOMNode } from 'react-dom';
 import { imageSize } from './utils';
 
 export default class LazyImage extends Component {
   constructor() {
     super()
     this.state = { type: 'default', src: '', width: null, height: null}
-    
+
     this.imageLoad = this.imageLoad.bind(this);
     this.handleImageSize = this.handleImageSize.bind(this);
   }
@@ -43,4 +42,3 @@ export default class LazyImage extends Component {
     );
   }
 }
-// style={{ maxHeight: window.innerHeight -100}}

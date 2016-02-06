@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import DOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
-import createLogger from 'redux-logger';
+import { createStore } from 'redux';
 
 import FastClick from 'fastclick';
 
@@ -14,11 +13,11 @@ import Images from './Images';
 import Slider from './Slider';
 
 // Logic
-import reducer, { ADD_IMAGE, ITEM_SELECT, TOGGLE_VIEW } from './redux/reducer';
+import reducer, { ITEM_SELECT, TOGGLE_VIEW } from './redux/reducer';
 import { assemble } from 'schematizr';
 import { imageLinks, aSynceImageLoad } from './utils';
 
-let store = createStore(reducer, applyMiddleware(createLogger()))
+let store = createStore(reducer)
 aSynceImageLoad(assemble(imageLinks()), store)
 
 // Styles
@@ -49,10 +48,6 @@ export default class Page extends Component {
       </div>
     );
   }
-}
-
-window.onresize = function() {
-  console.log(window.innerWidth, window.innerHeight);
 }
 
 const render = () => DOM.render(<Page store={store.getState()} />, document.getElementById('main'))

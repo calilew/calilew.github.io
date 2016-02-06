@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TransitionMotion, Motion, spring } from 'react-motion';
+import { Motion, spring } from 'react-motion';
 import { imageSize } from './utils';
 
 export default class Slider extends Component {

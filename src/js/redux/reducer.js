@@ -7,7 +7,6 @@ export const TOGGLE_VIEW = 'TOGGLE_VIEW';
 const initState = {
   images: [],
   selected: 0,
-  currentSize: 'none',
   sliderView: false
 }
 

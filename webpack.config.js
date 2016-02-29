@@ -3,7 +3,7 @@ var path = require('path');
 
 module.exports = {
   context: path.resolve(__dirname),
-  devtool: 'source-map',
+  devtool: 'eval',
   entry: './src/js/main.jsx',
   output: {
     path: './dist/js',
@@ -16,12 +16,12 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         loader: 'babel',
         query: {
-          presets: ['react', 'es2015']
+          presets: ['react', 'stage-1', 'es2015']
         }
       },
       {
         test: /\.scss$/,
-        loaders: ["style", "css", "sass"]
+        loaders: ['style', 'css', 'sass']
       },
       {
         test: /\.(png|jpg)$/,
@@ -30,14 +30,14 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"production"' }),
+    new webpack.DefinePlugin({ 'process.env.NODE_ENV': "'production'" }),
     new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } }),
     new webpack.optimize.DedupePlugin()
   ],
   resolve: {
     extensions: ['', '.react.js', '.js', '.jsx', '.scss'],
     modulesDirectories: [
-      "js", "node_modules"
+      'js', 'node_modules'
     ]
   }
 };

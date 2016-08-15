@@ -1,0 +1,19 @@
+.gallery-wrapper { margin: 0 2rem; }
+.gallery-wrapper ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.gallery-wrapper ul li {
+  margin: 0;
+  padding: 0;
+  min-width: 20rem;
+  max-width: 33%;
+}
+.gallery-wrapper ul li img {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  vertical-align: top;
+}

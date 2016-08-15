@@ -37,8 +37,11 @@ const handleFilters = (filters) => (event) => {
 
 const Page = (state) => {
   const { images, sliderView, selected, filters } = state.store;
+  const getSizes = () => {
+    console.log(imageLinks().map(x => x.large));
+  }
   return (
-    <div className="site-wrapper">
+    <div className="site-wrapper" onClick={getSizes}>
       <Header handleFilters={handleFilters(filters)} filters={filters} />
       <Gallery
         images={images}

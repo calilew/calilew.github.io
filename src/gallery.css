@@ -1,4 +1,7 @@
-.gallery-wrapper { margin: 0 2rem; }
+.gallery-wrapper {
+  margin: 0 2rem;
+  /*padding: 0 2rem;/*/
+}
 .gallery-wrapper ul {
   list-style-type: none;
   margin: 0;

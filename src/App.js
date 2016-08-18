@@ -19,8 +19,8 @@ class App extends Component {
     const { images } = this.props;
     return (
       <div className="App">
-        <Header handleFilter={(filter) => this.setState({ filter })} filter={filter} />
-        <Gallery images={images} filter={filter} handleImageClick={this.handleImageClick.bind(this)}/>
+        <Header handleFilter={(filt) => this.setState({ filter: filt === filter ? '' : filt })} filter={filter} />
+        <Gallery images={images} imageFilter={filter} handleImageClick={this.handleImageClick.bind(this)}/>
       </div>
     );
   }

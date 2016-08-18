@@ -9,6 +9,7 @@
     "masonry": "0.0.2",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
+    "react-imageloader": "2.1.0",
     "react-masonry-component": "4.2.1",
     "redux-logger": "2.6.1",
     "schematizr": "4.3.0"

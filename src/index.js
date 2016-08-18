@@ -4,35 +4,24 @@ import App from './App';
 import './index.css';
 import { applyMiddleware, createStore } from 'redux';
 import createLogger from 'redux-logger';
-import { findObjWith } from 'schematizr';
+import { assemble, findObjWith } from 'schematizr';
+import imageData from './imageData';
 
 const loadeImage = (src, id) => {
   const img = new Image();
   img.src = src;
   img.onload = function() {
-    store.dispatch({ type: 'SET_IMAGE_LOADED', id })
+    store.dispatch({ type: 'SET_IMAGE_LOADED', img, id })
   }
 }
-const getImages = () => {
-  let ids = 0;
-  const buildArray = (num, catagory) => {
-    const iter = (acc, arr) => {
-      if (acc === num + 1) return arr;
-      const src = 'img/' + catagory + '/' + 'large/' + acc + '.jpg';
-      ids ++;
-      console.log(ids);
-      loadeImage(src, ids)
-      return iter(acc + 1, [].concat(arr, [{
-        src,
-        catagory,
-        loaded: false,
-        id: ids
-      }]));
-    };
-    return iter(1, []);
-  };
-  // return [].concat(buildArray(3, 'fashion'), buildArray(3, 'portrait'), buildArray(3, 'travel'));
-  return [].concat(buildArray(18, 'fashion'), buildArray(17, 'portrait'), buildArray(23, 'travel'));
+
+const loadImages = (images) => {
+  return images.map(img => {
+    // const m = new Image();
+    // m.src = img.src;
+    // m.onload = () => store.dispatch({ type: 'SET_IMAGE_LOADED', id: img.$id })
+    return Object.assign({}, img, { loaded: false });
+  })
 }
 
 const imageReducer = (state = { images: [] }, action) => {
@@ -41,8 +30,8 @@ const imageReducer = (state = { images: [] }, action) => {
       return Object.assign({}, state, { images: action.images });
     case 'SET_IMAGE_LOADED':
       return findObjWith(
-        (obj) => Object.assign({}, obj, { loaded: true }),
-        { id: action.id },
+        (obj) => Object.assign({}, obj, { loaded: true, img: action.img }),
+        { $id: action.id },
         state
       )
     default:
@@ -51,10 +40,7 @@ const imageReducer = (state = { images: [] }, action) => {
 }
 
 const logger = createLogger();
-const store = createStore(
-  imageReducer,
-  applyMiddleware(logger)
-);
+const store = createStore(imageReducer);
 
 const render = () => {
   const state = store.getState();
@@ -65,4 +51,4 @@ const render = () => {
 };
 
 store.subscribe(render);
-store.dispatch({ type: 'ADD_IMAGE_LINKS', images: getImages() });
+store.dispatch({ type: 'ADD_IMAGE_LINKS', images: loadImages(assemble(imageData)) });

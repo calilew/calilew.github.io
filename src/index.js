@@ -3,13 +3,26 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
 import imageData from './imageData';
-import { assemble } from 'schematizr';
+import { uniq } from 'ramda';
+// import { assemble } from 'schematizr';
 
 import { store } from './redux';
 
-const loadImages = (images) => {
-  return images.map(img => {
-    return Object.assign({}, img, { loaded: false });
+// const loadImages = (images) => {
+//   return images.map(img => {
+//     const load = new Image();
+//     load.src = img.src;
+//     load.onload = () => setTimeout(() => store.dispatch({ type: 'IMAGE_LOADED', src: img.src }), 0);
+//     return Object.assign({}, img, { loaded: false });
+//   })
+// }
+
+const loadAndAddImages = (images) => {
+  return images.forEach(image => {
+    const load = new Image();
+    load.src = image.src;
+    load.onload = () => setTimeout(() => store.dispatch({ type: 'ADD_IMAGE', image }));
+    return image;
   })
 }
 
@@ -21,5 +34,8 @@ const render = () => {
   );
 };
 
+loadAndAddImages(imageData);
 store.subscribe(render);
-store.dispatch({ type: 'ADD_IMAGE_LINKS', images: loadImages(assemble(imageData)) });
+render();
+
+// store.dispatch({ type: 'ADD_IMAGE_LINKS', images: loadImages(assemble(imageData)) });

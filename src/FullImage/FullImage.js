@@ -43,7 +43,7 @@ class FullImage extends Component {
       <Motion defaultStyle={{ opacity: 0 }} style={{ opacity: spring(1)}}>
         { style => (
           <div className="full-image-wrapper" style={Object.assign({}, style, wrapperStyle())} onClick={this.handleClick.bind(this)}>
-            <div className="image-wrapper"><img src={image.src} /></div>
+            <div className="image-wrapper"><img src={image.src} role="presentation" /></div>
           </div>
         )}
       </Motion>

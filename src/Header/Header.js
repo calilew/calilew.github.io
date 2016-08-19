@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
-import { position, scrollTo } from '../scroller';
+import { scrollTo } from '../scroller';
 
 import './header.css';
 
-const Header = ({ handleFilter, filter }) => {
+const Header = ({ handleFilter, filter, catagories }) => {
   const handleNavClick = (filt) => {
     const bodyRect = document.body.getBoundingClientRect();
     if (filt === 'fashion') {
@@ -22,9 +22,9 @@ const Header = ({ handleFilter, filter }) => {
         <p className="name" onClick={() => scrollTo(0, () => null)}>Cali &nbsp;Lew</p>
         <div className="nav">
           <ul>
-            <li onClick={() => handleNavClick('fashion')}>fashion</li>
-            <li onClick={() => handleNavClick('portrait')}>portrait</li>
-            <li onClick={() => handleNavClick('travel')}>travel</li>
+            {
+              catagories.map((cat, index) => <li key={index} onClick={() => handleNavClick(cat)}>{cat}</li>)
+            }
           </ul>
         </div>
       </div>

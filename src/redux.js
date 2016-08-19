@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import { findObjWith } from 'schematizr';
+import { findObjWith, assemble, disassemble } from 'schematizr';
 
 const initialState = {
   images: [],
@@ -11,10 +11,12 @@ const imageReducer = (state = { images: [] }, action) => {
   switch (action.type) {
     case 'ADD_IMAGE_LINKS':
       return Object.assign({}, state, { images: action.images });
-    case 'SET_IMAGE_LOADED':
+    case 'ADD_IMAGE':
+      return Object.assign({}, state, { images: assemble([].concat(disassemble(state.images), [action.image])) });
+    case 'IMAGE_LOADED':
       return findObjWith(
         (obj) => Object.assign({}, obj, { loaded: true, img: action.img }),
-        { $id: action.id },
+        { src: action.src },
         state
       )
     case 'SET_FILTER':

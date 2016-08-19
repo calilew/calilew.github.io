@@ -34,8 +34,21 @@
 .images-wrapper .image-container { border: 2rem solid white; z-index: initial; }
 .images-wrapper .image-wrapper img {
   position: relative;
-  transform: scale(1.06, 1.06);
+  transform: scale(1.05, 1.05);
   z-index: -1;
   transition: 4s ease;
+  width: 100%;
 }
 .images-wrapper .image-wrapper:hover img { transform: scale(1.005, 1.005); }
+
+@media only screen and (max-width: 1000px) {
+  .gallery-wrapper { padding: 0 4rem; }
+  .images-wrapper .image-container { border: 0px; }
+  .images-wrapper .image-wrapper img { transform: scale(1, 1) }
+}
+
+@media only screen and (max-width: 700px) {
+  .images-wrapper { flex-flow: row wrap; }
+  .images-wrapper ul { flex: 100%; padding: 0; }
+  .images-wrapper ul:nth-child(2) { padding: 0; }
+}

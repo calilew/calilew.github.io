@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import classNames from 'classnames';
-import { head } from 'ramda';
+import { head, uniq, prop } from 'ramda';
 import { store } from './redux';
 
 import './App.css';
@@ -21,7 +21,7 @@ const App = ({ images, filter, selected }) => {
   return (
     <div className="app">
       <div className={classNames('content-wrapper', { ['on-app-out']: selected.id !== null })}>
-        <Header handleFilter={handleFilterChange} filter={filter} />
+        <Header handleFilter={handleFilterChange} filter={filter} catagories={uniq(images.map(x => x.catagory))}/>
         <Gallery images={images} imageFilter={filter} handleImageClick={handleImageClick}/>
       </div>
       {

@@ -36,6 +36,7 @@
   background: black;
   color: white;
   padding: .1rem;
+  padding-left: .4rem;
 }
 
 .about {
@@ -46,4 +47,9 @@
   max-width: 50rem;
   padding: 5rem 4.4rem;
   margin-top: 10rem;
+}
+
+@media only screen and (max-width: 700px) {
+  .fixed .nav { left: 11rem; }
+  .name { right: 3.4rem; }
 }

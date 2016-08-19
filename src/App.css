@@ -1,5 +1,12 @@
-.App {
-  text-align: center;
+.app {
   /*Lato|Montserrat|Playfair+Display|Roboto*/
-  font-family: 'Montserrat' helvetica sans-serif;;
+  font-family: 'Montserrat' helvetica sans-serif;
+}
+
+.content-wrapper {
+  opacity: 1;
+  transition: .5s;
+}
+.on-app-out {
+  opacity: 0;
 }

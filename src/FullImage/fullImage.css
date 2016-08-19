@@ -1,0 +1,24 @@
+.full-image-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.full-image-wrapper .image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.full-image-wrapper .image-wrapper img {
+  max-height: 100vh;
+  max-width: 100%;
+}

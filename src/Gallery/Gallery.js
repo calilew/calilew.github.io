@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import ImageLoader from 'react-imageloader';
-import Masonry from 'react-masonry-component';
-import { filter, map, split, compose, curry } from 'ramda';
+// import ImageLoader from 'react-imageloader';
+// import Masonry from 'react-masonry-component';
+import { filter, map, compose, curry } from 'ramda';
 
 import './gallery.css';
 
@@ -22,10 +22,10 @@ export default class Gallery extends Component {
     //   preloader={() => <div style={{ width: '100%', height: '100%', background: 'grey' }}></div>}>
     //   Image load failed!
     // </ImageLoader>
-    const ImageComponant = (img) => (
+    const imageComponant = (img) => (
       <div className="image-wrapper" >
-        <div className="image-container">
-          <img src={img.src} style={{ maxWidth: '100%' }} />
+        <div className="image-container" onClick={() => handleImageClick(img.$id)}>
+          <img src={img.src} style={{ maxWidth: '100%' }} role="presentation" />
         </div>
       </div>
     )
@@ -37,11 +37,10 @@ export default class Gallery extends Component {
               {
                 (index1 !== 0) && (imageFilter === '') ? <div className="title-wrapper"><h1>{catagory[0][0].catagory}</h1></div> : null
               }
-
               <div className="images-wrapper">
                 {
                   catagory.map((imageColumn, index2) => (
-                    <ul key={index2 + 'column'}>{ imageColumn.map((img, index3) => <li key={index3 + 'pic'}>{ImageComponant(img)}</li>) }</ul>
+                    <ul key={index2 + 'column'}>{ imageColumn.map((img, index3) => <li key={index3 + 'pic'}>{imageComponant(img)}</li>) }</ul>
                   ))
                 }
               </div>

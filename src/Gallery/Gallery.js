@@ -35,9 +35,9 @@ export default class Gallery extends Component {
           sortImages(images).map((catagory, index1) => (
             <div className="catagory-wrapper" key={index1 + 'catagory'}>
               {
-                (index1 !== 0) && (imageFilter === '') ? <div className="title-wrapper"><h1>{catagory[0][0].catagory}</h1></div> : null
+                (index1 !== 0) && (imageFilter === '') ? <div className="title-wrapper" id={catagory[0][0].catagory + '-title'}><h1>{catagory[0][0].catagory}</h1></div> : null
               }
-              <div className="images-wrapper">
+              <div className="images-wrapper" id={catagory[0][0].catagory + '-wrapper'}>
                 {
                   catagory.map((imageColumn, index2) => (
                     <ul key={index2 + 'column'}>{ imageColumn.map((img, index3) => <li key={index3 + 'pic'}>{imageComponant(img)}</li>) }</ul>

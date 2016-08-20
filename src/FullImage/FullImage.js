@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Motion, spring } from 'react-motion';
+import Swipeable from 'react-swipeable';
 import './fullImage.css';
 
 class FullImage extends Component {
@@ -35,7 +36,7 @@ class FullImage extends Component {
     return handleExit();
   }
   render() {
-    const { image } = this.props;
+    const { image, handleRightClick, handleLeftClick, handleExit } = this.props;
     const { mousePosition } = this.state;
     const wrapperStyle = () => {
       if (mousePosition === 'mouse-middle') return { cursor: 'url(../img/icons/cancel.png),auto' }
@@ -44,13 +45,19 @@ class FullImage extends Component {
       return {};
     }
     return (
-      <Motion defaultStyle={{ opacity: 0 }} style={{ opacity: spring(1)}}>
-        { style => (
-          <div className="full-image-wrapper" style={Object.assign({}, style, wrapperStyle())} onClick={this.handleClick.bind(this)}>
-            <div className="image-wrapper"><img src={image.src} role="presentation" /></div>
-          </div>
-        )}
-      </Motion>
+      <Swipeable
+        onSwipedUp={handleExit}
+        onSwipedRight={handleLeftClick}
+        onSwipedDown={handleExit}
+        onSwipedLeft={handleRightClick}>
+        <Motion defaultStyle={{ opacity: 0 }} style={{ opacity: spring(1)}}>
+          { style => (
+            <div className="full-image-wrapper" style={Object.assign({}, style, wrapperStyle())} onClick={this.handleClick.bind(this)}>
+              <div className="image-wrapper"><img src={image.src} role="presentation" /></div>
+            </div>
+          )}
+        </Motion>
+      </Swipeable>
     );
   }
 }

@@ -57,4 +57,4 @@ export default [
   { src: "img/travel/large/21.jpg", ratio: 1.492537313432836, catagory: "travel" },
   { src: "img/travel/large/22.jpg", ratio: 1.4947683109118086, catagory: "travel" },
   { src: "img/travel/large/23.jpg", ratio: 1.4947683109118086, catagory: "travel" }
-]
+];

@@ -39,7 +39,6 @@
   padding: .1rem;
   padding-left: .4rem;
 }
-
 .about {
   font-weight: 100;
   font-size: 2rem;
@@ -53,4 +52,15 @@
 @media only screen and (max-width: 700px) {
   .fixed .nav { left: 11rem; }
   .name { right: 3.4rem; }
+  .about { margin-top: 2rem; }
+}
+
+@media only screen and (max-width: 414px) {
+  .fixed { z-index: -30; }
+  .fixed .nav { display: none; }
+  .name { transform: rotateZ(0deg); left: 0; top: 0; }
+  .about { padding: 5rem 2rem; margin-top: 2rem; font-size: 1.8rem }
+}
+@media only screen and (max-width: 350px) {
+  .about { font-size: 1.4rem; }
 }

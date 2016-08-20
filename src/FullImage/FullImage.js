@@ -8,6 +8,10 @@ class FullImage extends Component {
     this.state = { mousePosition: 'mouse-middle' }
     this.handleMouseMove = this.handleMouseMove.bind(this);
   }
+  shouldComponentUpdate(nextProps, nextState) {
+    return (this.props.image.src !== nextProps.image.src) ||
+     (this.state.mousePosition !== nextState.mousePosition)
+  }
   componentDidMount() {
     window.addEventListener('mousemove', this.handleMouseMove);
   }

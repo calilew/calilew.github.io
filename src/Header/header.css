@@ -10,6 +10,7 @@
   position: relative;
   top: 5rem;
   left: 10rem;
+  width: 25rem;
   transform: rotateZ(90deg);
   float: right;
 }

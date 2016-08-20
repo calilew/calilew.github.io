@@ -16,12 +16,19 @@ import { store } from './redux';
 //     return Object.assign({}, img, { loaded: false });
 //   })
 // }
+const loadImages = (urls) => {
+  urls.forEach((src) => {
+    const load = new Image();
+    load.src = src;
+    // load.onload = () => document.body.appendChild(load)
+  });
+}
 
 const loadAndAddImages = (images) => {
   return images.forEach(image => {
     const load = new Image();
     load.src = image.src;
-    load.onload = () => setTimeout(() => store.dispatch({ type: 'ADD_IMAGE', image }));
+    load.onload = () => setTimeout(() => store.dispatch({ type: 'ADD_IMAGE', image }), 0);
     return image;
   })
 }
@@ -33,8 +40,8 @@ const render = () => {
     document.getElementById('root')
   );
 };
-
-loadAndAddImages(imageData);
+setTimeout(() => loadImages(['img/icons/cancel.png', 'img/icons/next.png', 'img/icons/back.png']), 0)
+setTimeout(() => loadAndAddImages(imageData), 10);
 store.subscribe(render);
 render();
 

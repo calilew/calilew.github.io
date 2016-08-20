@@ -21,9 +21,12 @@ export default class Gallery extends Component {
     );
     const imageComponant = (img) => (
       <div className="image-wrapper" >
-        <Motion defaultStyle={{ opacity: 0 }} style={{ opacity: spring(1) }}>
-          {style => (
-            <div className="image-container" onClick={() => handleImageClick(img.$id)} style={style}>
+        <Motion defaultStyle={{ x: 0, }} style={{ x: spring(1) }}>
+          {val => (
+            <div
+              className="image-container"
+              style={{ opacity: val.x, transform: `scale(${val.x}, ${val.x})` }}
+              onClick={() => handleImageClick(img.$id)}>
               <img src={img.src} role="presentation" />
             </div>
           )}

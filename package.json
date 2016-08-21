@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && npm run copy",
     "eject": "react-scripts eject",
     "move-css": "mv ./build/static/css/*.css ./dist/main.css && mv ./build/static/css/*.map ./dist/main.css.map",
     "move-js": "mv ./build/static/js/*.js ./dist/main.js && mv ./build/static/js/*.map ./dist/main.js.map",

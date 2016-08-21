@@ -8,14 +8,17 @@ import { uniq } from 'ramda';
 
 import { store } from './redux';
 
-// const loadImages = (images) => {
-//   return images.map(img => {
-//     const load = new Image();
-//     load.src = img.src;
-//     load.onload = () => setTimeout(() => store.dispatch({ type: 'IMAGE_LOADED', src: img.src }), 0);
-//     return Object.assign({}, img, { loaded: false });
-//   })
-// }
+const setLoadedFalse = (images) => images.map(img => Object.assign({}, img, { loaded: false }));
+
+const loadAllImages = (images) => images.map(image => {
+  setTimeout(() => {
+    const load = new Image();
+    load.src = image.src;
+    load.onload = () => setTimeout(() => store.dispatch({ type: 'ADD_IMAGE', image }), 0);
+  }, 0);
+  return image;
+})
+
 const loadImages = (urls) => {
   urls.forEach((src) => {
     const load = new Image();
@@ -41,7 +44,8 @@ const render = () => {
   );
 };
 setTimeout(() => loadImages(['img/icons/cancel.png', 'img/icons/next.png', 'img/icons/back.png']), 0)
-setTimeout(() => loadAndAddImages(imageData), 10);
+// setTimeout(() => loadAndAddImages(imageData), 10);
+store.dispatch({ type: 'ADD_IMAGE_LINKS', images: loadAllImages(imageData) });
 store.subscribe(render);
 render();
 

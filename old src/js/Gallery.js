@@ -12,7 +12,6 @@ const Gallery = ({ images, handleSelect, filters }) => {
     }
     return imageSize(img.ratio, (window.innerWidth*0.5) / 3 - 30, window.innerHeight - 100);
   };
-  console.log(window.innerWidth);
   return (
     <div className="gallery-wrapper">
       <div className="section-wrapper">

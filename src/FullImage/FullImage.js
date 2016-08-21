@@ -6,12 +6,19 @@ import './fullImage.css';
 class FullImage extends Component {
   constructor() {
     super();
-    this.state = { mousePosition: 'mouse-middle' }
+    this.state = { mousePosition: 'mouse-middle', swipeX: 0, swipeY: 0, opacity: spring(1) }
     this.handleMouseMove = this.handleMouseMove.bind(this);
   }
   shouldComponentUpdate(nextProps, nextState) {
     return (this.props.image.src !== nextProps.image.src) ||
-     (this.state.mousePosition !== nextState.mousePosition)
+      (this.state.mousePosition !== nextState.mousePosition) ||
+      (this.state.swipeX !== nextState.swipeX);
+  }
+  componentWillReceiveProps(nextProps) {
+    if (this.props.image.src !== nextProps.image.src) {
+      this.state.swipeX = 0;
+      this.state.swipeY = 0;
+    }
   }
   componentDidMount() {
     window.addEventListener('mousemove', this.handleMouseMove);
@@ -35,17 +42,23 @@ class FullImage extends Component {
     else if (e.pageX < window.innerWidth / 3) return handleLeftClick();
     return handleExit();
   }
+  handleSwipe(e, deltaX, deltaY) {
+    console.log(deltaY);
+    this.setState({ swipeX: deltaX, swipeY: deltaY });
+  }
   render() {
     const { image, handleRightClick, handleLeftClick, handleExit } = this.props;
-    const { mousePosition } = this.state;
+    const { mousePosition, swipeX, swipeY } = this.state;
     const wrapperStyle = () => {
       if (mousePosition === 'mouse-middle') return { cursor: 'url(../img/icons/cancel.png),auto' }
       else if (mousePosition === 'mouse-left') return { cursor: 'url(../img/icons/back.png),auto' }
       else if (mousePosition === 'mouse-right') return { cursor: 'url(../img/icons/next.png),auto' }
       return {};
     }
+    // console.log(this.state.swipeY);
     return (
       <Swipeable
+        onSwiping={this.handleSwipe.bind(this)}
         onSwipedUp={handleExit}
         onSwipedRight={handleLeftClick}
         onSwipedDown={handleExit}
@@ -53,7 +66,9 @@ class FullImage extends Component {
         <Motion defaultStyle={{ opacity: 0 }} style={{ opacity: spring(1)}}>
           { style => (
             <div className="full-image-wrapper" style={Object.assign({}, style, wrapperStyle())} onClick={this.handleClick.bind(this)}>
-              <div className="image-wrapper"><img src={image.src} role="presentation" /></div>
+              <div className="image-wrapper">
+                <img src={image.src} role="presentation" style={{ position: 'relative', right: swipeX / 10, top: -swipeY / 10 }}/>
+              </div>
             </div>
           )}
         </Motion>

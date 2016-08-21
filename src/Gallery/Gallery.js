@@ -13,9 +13,10 @@ export default class Gallery extends Component {
     const splitEqual = curry((num, arr) =>
     	Array.apply(null, Array(num)).
     	map((empty, index) => arr.filter((item, itemIndex) => itemIndex % num === index)));
+    const splitMiddle = (arr) => [arr.slice(0, arr.length / 2), arr.slice(arr.length / 2, arr.length)]
     const sortImages = compose(
-      map(x => reverse(x)),
-      map(x => splitEqual(2, x)),
+      map(x => window.innerWidth <= 700 ? x : reverse(x)),
+      map(x => window.innerWidth <= 700 ? splitMiddle(x) : splitEqual(2, x)),
       filter(x => displayImage(x[0].catagory)),
       splitByCatagory
     );

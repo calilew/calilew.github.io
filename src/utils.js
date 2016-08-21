@@ -5,7 +5,6 @@ export const getImages = () => {
       if (acc === num + 1) return arr;
       const src = 'img/' + catagory + '/' + 'large/' + acc + '.jpg';
       ids ++;
-      console.log(ids);
       loadeImage(src, ids)
       return iter(acc + 1, [].concat(arr, [{
         src,

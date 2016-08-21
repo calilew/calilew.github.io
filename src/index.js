@@ -3,12 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
 import imageData from './imageData';
-import { uniq } from 'ramda';
-// import { assemble } from 'schematizr';
 
 import { store } from './redux';
 
-const setLoadedFalse = (images) => images.map(img => Object.assign({}, img, { loaded: false }));
+// const setLoadedFalse = (images) => images.map(img => Object.assign({}, img, { loaded: false }));
 
 const loadAllImages = (images) => images.map(image => {
   setTimeout(() => {
@@ -27,14 +25,14 @@ const loadImages = (urls) => {
   });
 }
 
-const loadAndAddImages = (images) => {
-  return images.forEach(image => {
-    const load = new Image();
-    load.src = image.src;
-    load.onload = () => setTimeout(() => store.dispatch({ type: 'ADD_IMAGE', image }), 0);
-    return image;
-  })
-}
+// const loadAndAddImages = (images) => {
+//   return images.forEach(image => {
+//     const load = new Image();
+//     load.src = image.src;
+//     load.onload = () => setTimeout(() => store.dispatch({ type: 'ADD_IMAGE', image }), 0);
+//     return image;
+//   })
+// }
 
 const render = () => {
   const state = store.getState();

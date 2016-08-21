@@ -1,29 +1,36 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import classNames from 'classnames';
-import { head, uniq, prop } from 'ramda';
+import { head, uniq } from 'ramda';
 import { store } from './redux';
 
 import './App.css';
 import Header from './Header/Header';
 import Gallery from './Gallery/Gallery';
 import FullImage from './FullImage/FullImage';
-import { loadNext } from './redux';
 
-const App = ({ images, filter, selected }) => {
+const App = ({ images, selected }) => {
+  // Actions
   const handleImageClick = (id) => store.dispatch({ type: 'SELECT_IMAGE', id });
-  const handleFilterChange = (filt) => store.dispatch({ type: 'SET_FILTER', filter: filt === filter ? '' : filt });
+
+  // Handle next or previus image select
   const handlePagenation = (amount) => {
     if (selected.id + amount >= images.length) return handleImageClick(1);
     else if (selected.id + amount < 1) return handleImageClick(images.length);
     return handleImageClick(selected.id + amount);
   }
+
+  // No scroll while Full image view;
   if (selected.id !== null) document.body.style.overflow = 'hidden';
   else document.body.style.overflow = 'scroll';
+
   return (
-    <div className="app" onClick={() => store.dispatch(loadNext())}>
+    <div className="app">
       <div className={classNames('content-wrapper', { ['on-app-out']: selected.id !== null })}>
-        <Header handleFilter={handleFilterChange} filter={filter} catagories={uniq(images.map(x => x.catagory))}/>
-        <Gallery images={images} imageFilter={filter} handleImageClick={handleImageClick}/>
+        <Header
+          catagories={uniq(images.map(x => x.catagory))}/>
+        <Gallery
+          images={images}
+          handleImageClick={handleImageClick}/>
       </div>
       {
         selected.id !== null ? (
@@ -38,5 +45,10 @@ const App = ({ images, filter, selected }) => {
     </div>
   )
 }
+
+App.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.shape({ src: PropTypes.string.isRequired }).isRequired).isRequired,
+  selected: PropTypes.object.isRequired
+};
 
 export default App;

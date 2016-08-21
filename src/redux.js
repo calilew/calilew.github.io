@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk'
 import { findObjWith, assemble, disassemble } from 'schematizr';
-import { head, drop } from 'ramda';
+import { head } from 'ramda';
 
 // INITIAL STATE
 const initialState = {

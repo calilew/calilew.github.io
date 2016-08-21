@@ -2,8 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { scrollTo } from '../scroller';
 
 import './header.css';
+
 class Header extends Component {
-  shouldComponentUpdate(nextProps) { return this.props.catagories !== nextProps.catagories; }
+  shouldComponentUpdate(nextProps) { return this.props.catagories.length !== nextProps.catagories.length; }
   render() {
     const { catagories } = this.props;
     const handleNavClick = (filt) => {
@@ -35,7 +36,7 @@ class Header extends Component {
 
 
 Header.propTypes = {
-  catagories: PropTypes.arrayOf(PropTypes.string).isRequired
+  catagories: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
 };
 
 export default Header;

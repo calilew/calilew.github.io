@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Motion, spring } from 'react-motion';
 import Swipeable from 'react-swipeable';
 import './fullImage.css';
@@ -16,8 +16,7 @@ class FullImage extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.image.src !== nextProps.image.src) {
-      this.state.swipeX = 0;
-      this.state.swipeY = 0;
+      this.setState({ swipeX: 0, swipeY: 0 });
     }
   }
   componentDidMount() {
@@ -49,13 +48,15 @@ class FullImage extends Component {
   render() {
     const { image, handleRightClick, handleLeftClick, handleExit } = this.props;
     const { mousePosition, swipeX, swipeY } = this.state;
+
+    // Set cursor css style
     const wrapperStyle = () => {
       if (mousePosition === 'mouse-middle') return { cursor: 'url(../img/icons/cancel.png),auto' }
       else if (mousePosition === 'mouse-left') return { cursor: 'url(../img/icons/back.png),auto' }
       else if (mousePosition === 'mouse-right') return { cursor: 'url(../img/icons/next.png),auto' }
       return {};
-    }
-    // console.log(this.state.swipeY);
+    };
+
     return (
       <Swipeable
         onSwiping={this.handleSwipe.bind(this)}
@@ -75,6 +76,13 @@ class FullImage extends Component {
       </Swipeable>
     );
   }
+}
+
+FullImage.propTypes = {
+  image: PropTypes.shape({ src: PropTypes.string.isRequired }).isRequired,
+  handleRightClick: PropTypes.func.isRequired,
+  handleLeftClick: PropTypes.func.isRequired,
+  handleExit: PropTypes.func.isRequired
 }
 
 export default FullImage;

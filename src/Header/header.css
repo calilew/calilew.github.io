@@ -73,7 +73,7 @@
 }
 
 @media only screen and (max-width: 414px) {
-  .fixed { z-index: -30; }
+  /*.fixed { z-index: -30; }*/
   .fixed .nav { display: none; }
   .name { transform: rotateZ(0deg); left: 0; top: 0; }
   .about { padding: 5rem 2rem; margin-top: 2rem; }

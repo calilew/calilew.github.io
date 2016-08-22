@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { scrollTo } from '../scroller';
+import { scrollTo, position } from '../scroller';
 
 import './header.css';
 

@@ -76,8 +76,10 @@
   .fixed { z-index: -30; }
   .fixed .nav { display: none; }
   .name { transform: rotateZ(0deg); left: 0; top: 0; }
-  .about { padding: 5rem 2rem; margin-top: 2rem; font-size: 1.8rem }
+  .about { padding: 5rem 2rem; margin-top: 2rem; }
+  .about .short { font-size: 1.8rem }
+  .about a { padding: .1rem .5rem .1rem .5rem; }
 }
 @media only screen and (max-width: 350px) {
-  .about { font-size: 1.4rem; }
+  .about .short { font-size: 1.4rem; }
 }

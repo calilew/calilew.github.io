@@ -43,7 +43,8 @@ const render = () => {
 };
 setTimeout(() => loadImages(['img/icons/cancel.png', 'img/icons/next.png', 'img/icons/back.png']), 0)
 // setTimeout(() => loadAndAddImages(imageData), 10);
-store.dispatch({ type: 'ADD_IMAGE_LINKS', images: loadAllImages(imageData) });
+setTimeout(() => loadAllImages(imageData), 10);
+// store.dispatch({ type: 'ADD_IMAGE_LINKS', images: loadAllImages(imageData) });
 store.subscribe(render);
 render();
 

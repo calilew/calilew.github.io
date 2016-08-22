@@ -40,14 +40,31 @@
   padding-left: .4rem;
 }
 .about {
-  font-weight: 100;
-  font-size: 2rem;
-  letter-spacing: 1px;
-  text-align: left;
   max-width: 50rem;
   padding: 5rem 4.4rem;
   margin-top: 10rem;
 }
+.about .short {
+  letter-spacing: 1px;
+  text-align: left;
+  font-size: 2rem;
+  font-weight: 100;
+}
+/*BUTTONS*/
+.about ul { list-style-type: none; display: flex; padding-left: 0; }
+.about ul li { padding-right: 2rem; text-transform: uppercase; }
+.about ul li a { color: white; text-decoration: none; background: black; padding: .2rem .5rem .1rem .5rem; }
+
+/*.about ul li a { display: block; transition: 1s; overflow: hidden; width: 100%; }
+.about ul li a:before { position: absolute; color: black; z-index: -1; }
+.about ul li:hover a { width: 0; padding: .2rem 0.5rem .1rem .5rem; }
+
+#email { width: 4rem; }
+#instagrma { width: 6.85rem; }
+
+#email a:before { content: 'email'; }
+#instagram a:before { content: 'instagram'; }*/
+
 
 @media only screen and (max-width: 700px) {
   .fixed .nav { left: 11rem; }

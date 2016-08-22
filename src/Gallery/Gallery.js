@@ -28,11 +28,11 @@ export default class Gallery extends Component {
 
     // Thumbnail image component
     const imageComponant = (img) => (
-      <div className="image-wrapper" >
+      <div className="image-wrapper">
         <ThumbnailImage src={img.src} id={img.$id} handleImageClick={handleImageClick} />
       </div>
     );
-    
+
     const renderStructure = (sortedArray) => {
       return sortedArray.map((catagory, index1) => {
         const title = head(head(catagory)) ? compose(prop('catagory'), head, head)(catagory) : '';

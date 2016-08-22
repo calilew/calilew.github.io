@@ -19,12 +19,15 @@
   position: relative;
   z-index: initial;
   border: 2rem solid white;
+  pointer-events: none;
 }
 .image-wrapper .image-container {
   position: relative;
   transform: scale(0, 0);
   z-index: -1;
   transition: 1s;
+  pointer-events: auto;
+  cursor: pointer;
 }
 .image-wrapper .image-visible { transform: scale(1, 1) }
 .image-wrapper .image-container img {
@@ -32,12 +35,15 @@
   transform: scale(1.05, 1.05);
   transition: 4s ease;
   width: 100%;
+  user-select: none;
 }
 .image-wrapper:hover img { transform: scale(1.019, 1.019); }
 
 /*MAKE IT RESPONSIVE*/
 @media only screen and (max-width: 1000px) {
   .gallery-wrapper { padding: 0 4rem; }
+  .images-wrapper ul { padding-right: 1.25rem; }
+  .images-wrapper ul:nth-child(2) { padding-left: 1.25rem; }
   .images-wrapper .image-wrapper { border: 0px; }
   .images-wrapper .image-wrapper img { transform: scale(1, 1) }
 }

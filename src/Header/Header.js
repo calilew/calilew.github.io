@@ -28,7 +28,13 @@ class Header extends Component {
             </ul>
           </div>
         </div>
-        <p className="about"><b>Hi my name is Cali. I am a london based photographer currently traveling the world</b></p>
+        <div className="about">
+          <p className="short"><b>Hi my name is Cali. I am a london based photographer currently freelancing.</b></p>
+          <ul>
+            <li id="email"><a href="mailto:enquiries@cali-lew.com?Subject=Hello">email</a></li>
+            <li id="instagram"><a href="https://www.instagram.com/calilew">instagram</a></li>
+          </ul>
+        </div>
       </div>
     );
   }

@@ -6,7 +6,13 @@ import './fullImage.css';
 class FullImage extends Component {
   constructor() {
     super();
-    this.state = { mousePosition: 'mouse-middle', swipeX: 0, swipeY: 0, opacity: spring(1) }
+    this.state = {
+      mousePosition: 'mouse-middle',
+      swipeX: 0,
+      swipeY: 0,
+      opacity: spring(1),
+      message: true
+    };
     this.handleMouseMove = this.handleMouseMove.bind(this);
   }
   shouldComponentUpdate(nextProps, nextState) {
@@ -17,6 +23,7 @@ class FullImage extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.image.src !== nextProps.image.src) {
       this.setState({ swipeX: 0, swipeY: 0 });
+      if (this.state.message) this.setState({ message: false });
     }
   }
   componentDidMount() {
@@ -42,12 +49,11 @@ class FullImage extends Component {
     return handleExit();
   }
   handleSwipe(e, deltaX, deltaY) {
-    console.log(deltaY);
     this.setState({ swipeX: deltaX, swipeY: deltaY });
   }
   render() {
     const { image, handleRightClick, handleLeftClick, handleExit } = this.props;
-    const { mousePosition, swipeX, swipeY } = this.state;
+    const { mousePosition, swipeX, swipeY, message } = this.state;
 
     // Set cursor css style
     const wrapperStyle = () => {
@@ -67,9 +73,8 @@ class FullImage extends Component {
         <Motion defaultStyle={{ opacity: 0 }} style={{ opacity: spring(1)}}>
           { style => (
             <div className="full-image-wrapper" style={Object.assign({}, style, wrapperStyle())} onClick={this.handleClick.bind(this)}>
-              <div className="image-wrapper">
-                <img src={image.src} role="presentation" style={{ position: 'relative', right: swipeX / 10, top: -swipeY / 10 }}/>
-              </div>
+              { message && (window.innerWidth < 1000) ? <div className="message">Swipe to change</div> : null }
+              <img src={image.src} role="presentation" style={{ position: 'relative', right: swipeX / 10, top: -swipeY / 10 }}/>
             </div>
           )}
         </Motion>

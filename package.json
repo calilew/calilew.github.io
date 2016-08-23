@@ -22,8 +22,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build && npm run copy",
     "eject": "react-scripts eject",
-    "move-css": "mv ./build/static/css/*.css ./dist/main.css && mv ./build/static/css/*.map ./dist/main.css.map",
-    "move-js": "mv ./build/static/js/*.js ./dist/main.js && mv ./build/static/js/*.map ./dist/main.js.map",
+    "move-css": "cp ./build/static/css/*.css ./dist/css/main.css && cp ./build/static/css/*.map ./dist/css/main.css.map",
+    "move-js": "cp ./build/static/js/*.js ./dist/js/main.js && cp ./build/static/js/*.map ./dist/js/main.js.map",
+    "copy-img": "cp -R ./img ./dist",
     "copy": "npm run move-css && npm run move-js"
   },
   "eslintConfig": {

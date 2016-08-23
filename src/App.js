@@ -20,8 +20,8 @@ const App = ({ images, selected }) => {
   }
 
   // No scroll while Full image view;
-  if (selected.id !== null) document.body.style.overflow = 'hidden';
-  else document.body.style.overflow = 'scroll';
+  if (selected.id !== null) document.body.style.overflowY = 'hidden';
+  else document.body.style.overflowY = 'scroll';
 
   return (
     <div className="app">

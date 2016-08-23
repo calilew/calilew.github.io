@@ -1,3 +1,7 @@
+body {
+  overflow-x: hidden;
+}
+
 .app {
   /*Lato|Montserrat|Playfair+Display|Roboto*/
   font-family: 'Montserrat' helvetica sans-serif;

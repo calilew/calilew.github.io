@@ -17,6 +17,9 @@ class LightBox extends Component {
     };
     this.handleMouseMove = this.handleMouseMove.bind(this);
   }
+  componentWillReceiveProps() {
+    this.setState({ swipeX: 0, swipeY: 0 });
+  }
   componentDidMount() {
     // Removed scroll
     document.body.style.overflowY = 'hidden';
@@ -81,15 +84,15 @@ class LightBox extends Component {
     return (
       <Swipeable
         onSwiping={this.handleSwipe.bind(this)}
-        onSwipedUp={this.handleExit.bind(this)}
+        // onSwipedUp={this.handleExit.bind(this)}
+        // onSwipedDown={this.handleExit.bind(this)}
         onSwipedRight={this.handleLeftClick.bind(this)}
-        onSwipedDown={this.handleExit.bind(this)}
         onSwipedLeft={this.handleRightClick.bind(this)}>
         <Motion defaultStyle={{ opacity: 0 }} style={{ opacity: spring(1)}}>
           { style => (
             <div className="full-image-wrapper" style={Object.assign({}, style, wrapperStyle())} onClick={this.handleClick.bind(this)}>
               { message && (window.innerWidth < 1000) ? <div className="message">Swipe to change</div> : null }
-              <img src={currentImage.src} role="presentation" style={{ position: 'relative', right: swipeX / 10, top: -swipeY / 10 }}/>
+              <img src={currentImage.src} role="presentation" style={{ position: 'relative', right: swipeX / 10 }}/>
             </div>
           )}
         </Motion>

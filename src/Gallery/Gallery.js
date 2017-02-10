@@ -9,7 +9,7 @@ export default class Gallery extends Component {
     const { lastSelected } = this.props;
     if (lastSelected.length > 0) {
       const bodyRect = document.body.getBoundingClientRect();
-      window.scrollTo(0, document.getElementById('img-'+lastSelected).getBoundingClientRect().top - bodyRect.top + 100);
+      window.scrollTo(0, document.getElementById('img-'+lastSelected).getBoundingClientRect().top - bodyRect.top + 60);
     }
   }
   render() {

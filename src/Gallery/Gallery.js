@@ -4,8 +4,16 @@ import ThumbnailImage from '../ThumbnailImage/ThumbnailImage';
 import './gallery.css';
 
 export default class Gallery extends Component {
+  componentDidMount() {
+    // If returning from the lightbox then scroll to last image open
+    const { lastSelected } = this.props;
+    if (lastSelected.length > 0) {
+      const bodyRect = document.body.getBoundingClientRect();
+      window.scrollTo(0, document.getElementById('img-'+lastSelected).getBoundingClientRect().top - bodyRect.top + 100);
+    }
+  }
   render() {
-    const { images, handleImageClick } = this.props;
+    const { images, handleImageClick, lastSelected } = this.props;
 
     // Splits array into seperate arrays of catagories
     const splitByCatagory = (array) => compose(
@@ -29,10 +37,9 @@ export default class Gallery extends Component {
     // Thumbnail image component
     const imageComponant = (img) => (
       <div className="image-wrapper">
-        <ThumbnailImage src={img.src} id={img.$id} handleImageClick={handleImageClick} />
+        <ThumbnailImage src={img.src} id={img.$id} handleImageClick={handleImageClick} animateIn={lastSelected.length === 0} />
       </div>
     );
-
     const renderStructure = (sortedArray) => {
       return sortedArray.map((catagory, index1) => {
         const title = head(head(catagory)) ? compose(prop('catagory'), head, head)(catagory) : '';
@@ -72,7 +79,7 @@ Gallery.propTypes = {
   images: PropTypes.arrayOf(PropTypes.shape({
     src: PropTypes.string.isRequired,
     catagory: PropTypes.string.isRequired,
-    $id: PropTypes.number.isRequired
+    $id: PropTypes.string.isRequired
   })).isRequired,
   handleImageClick: PropTypes.func.isRequired
 }

@@ -54,6 +54,6 @@
   .images-wrapper ul:nth-child(2) { padding: 0; }
 }
 
-@media only screen and (max-width: 414px) {
+@media only screen and (max-width: 500px) {
   .gallery-wrapper { padding: 0; }
 }

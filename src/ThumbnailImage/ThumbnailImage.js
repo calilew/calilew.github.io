@@ -1,16 +1,20 @@
 import React, { Component, PropTypes } from 'react';
+import classNames from 'classnames';
 
 class ThumbnailImage extends Component {
   componentDidMount() {
-    setTimeout(() => {
-      document.getElementById('img-' + this.props.id).className += ' image-visible';
-    }, 0)
+    const { animateIn } = this.props;
+    if (animateIn) {
+      setTimeout(() => {
+        document.getElementById('img-' + this.props.id).className += ' image-visible';
+      }, 0)
+    }
   }
   render() {
-    const { handleImageClick, src, id } = this.props;
+    const { handleImageClick, src, id, animateIn } = this.props;
     return (
       <div
-        className="image-container"
+        className={classNames('image-container', { ['image-visible']: !animateIn })}
         onClick={() => handleImageClick(id)}
         id={'img-'+id}>
         <img src={src} role="presentation" />
@@ -21,7 +25,7 @@ class ThumbnailImage extends Component {
 
 ThumbnailImage.propTypes = {
   src: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   handleImageClick: PropTypes.func.isRequired,
 }
 

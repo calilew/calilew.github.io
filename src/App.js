@@ -1,54 +1,37 @@
 import React, { PropTypes } from 'react';
-import classNames from 'classnames';
-import { head, uniq } from 'ramda';
-import { store } from './redux';
+import R from 'ramda';
+import { connect } from 'react-redux';
 
-import './App.css';
 import Header from './Header/Header';
 import Gallery from './Gallery/Gallery';
-import FullImage from './FullImage/FullImage';
 
-const App = ({ images, selected }) => {
+import './App.css';
+
+const App = ({ images, lastSelected, router }) => {
   // Actions
-  const handleImageClick = (id) => store.dispatch({ type: 'SELECT_IMAGE', id });
+  const handleImageClick = (id) => router.push(`photos/${id}`);
+  // Filter images that havent loaded yet
 
-  // Handle next or previus image select
-  const handlePagenation = (amount) => {
-    if (selected.id + amount >= images.length) return handleImageClick(1);
-    else if (selected.id + amount < 1) return handleImageClick(images.length);
-    return handleImageClick(selected.id + amount);
-  }
-
-  // No scroll while Full image view;
-  if (selected.id !== null) document.body.style.overflowY = 'hidden';
-  else document.body.style.overflowY = 'scroll';
-
+  const loadedImages = images.filter(x => x.loaded);
   return (
     <div className="app">
-      <div className={classNames('content-wrapper', { ['on-app-out']: selected.id !== null })}>
+      <div className="content-wrapper">
         <Header
-          catagories={uniq(images.map(x => x.catagory))}/>
+          catagories={R.uniq(loadedImages.map(x => x.catagory))}/>
         <Gallery
-          images={images}
-          handleImageClick={handleImageClick}/>
+          images={loadedImages}
+          handleImageClick={handleImageClick}
+          lastSelected={lastSelected}/>
       </div>
-      {
-        selected.id !== null ? (
-          <FullImage
-            image={head(images.filter(m => m.$id === selected.id))}
-            handleExit={() => handleImageClick(null)}
-            handleLeftClick={() => handlePagenation(-1)}
-            handleRightClick={() => handlePagenation(1)}
-          />
-        ) : null
-      }
     </div>
   )
 }
 
 App.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.shape({ src: PropTypes.string.isRequired }).isRequired).isRequired,
-  selected: PropTypes.object.isRequired
+  images: PropTypes.arrayOf(PropTypes.shape({ src: PropTypes.string.isRequired })).isRequired,
+  lastSelected: PropTypes.string.isRequired,
 };
 
-export default App;
+const mapStateToProps = ({ images, lastSelected }) => ({ images, lastSelected });
+
+export default connect(mapStateToProps)(App);

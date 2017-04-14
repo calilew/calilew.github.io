@@ -4,9 +4,11 @@ import { Router, Route, hashHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import imageData from './imageData';
 import { store } from './redux';
+import 'basscss/css/basscss.min.css';
 
 import App from './App';
 import LightBox from './LightBox/LightBox';
+import LightBoxSlider from './LightBoxSlider/LightBoxSlider';
 
 const loadAllImages = (images) => images.map(image => {
   setTimeout(() => {
@@ -25,7 +27,7 @@ const render = () => {
     <Provider store={store}>
       <Router history={hashHistory}>
         <Route path="/" component={App} />
-        <Route path="/photos/:id" component={LightBox} />
+        <Route path="/photos/:id" component={LightBoxSlider} />
       </Router>
     </Provider>,
     document.getElementById('root')

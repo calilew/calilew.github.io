@@ -19,6 +19,18 @@ const loadAllImages = (images) => images.map(image => {
   return image;
 })
 
+const loadIcons = () => {
+  const cancel = new Image();
+  cross.src = 'resources/icons/cancel.png';
+
+  const back = new Image();
+  cross.src = 'resources/icons/back.png';
+
+  const next = new Image();
+  cross.src = 'resources/icons/next.png';
+}
+
+loadIcons();
 store.dispatch({ type: 'ADD_IMAGE_DATA', imageData });
 setTimeout(() => loadAllImages(imageData), 0);
 

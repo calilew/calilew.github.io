@@ -12,12 +12,39 @@ export default class LightBoxSlider extends Component {
       touchDownX: 0,
       touchOffset: 0,
       movingLeft: true,
+      mousePosition: 'mouse-middle',
     };
+    this.handleMouseMove = this.handleMouseMove.bind(this);
+  }
+  componentDidMount() {
+    // blocked scroll
+    document.body.style.overflowY = 'hidden';
+    window.addEventListener('mousemove', this.handleMouseMove);
+  }
+  componentWillUnmount() {
+    // unblocked scroll
+    document.body.style.overflowY = 'scroll';
+    window.removeEventListener('mousemove', this.handleMouseMove);
+  }
+  handleMouseMove(e) {
+    const { mousePosition } = this.state;
+    if (e.pageX > (window.innerWidth / 3) * 2 && mousePosition !== 'mouse-right') {
+      return this.setState({ mousePosition: 'mouse-right' });
+    } else if (e.pageX < window.innerWidth / 3 && mousePosition !== 'mouse-left') {
+      return this.setState({ mousePosition: 'mouse-left' });
+    } else if (e.pageX > window.innerWidth / 3 && e.pageX < (window.innerWidth / 3) * 2 && mousePosition !== 'mouse-middle') {
+      return this.setState({ mousePosition: 'mouse-middle' });
+    }
   }
   componentWillReceiveProps(newProps) {
     if (newProps.params.id !== this.props.params.id) {
       this.setState({ hasSwitched: true, touchDownX: 0, touchOffset: 0 });
     }
+  }
+  handleClick(e) {
+    if (e.pageX > (window.innerWidth / 3) * 2) return this.handleRightSwitch();
+    else if (e.pageX < window.innerWidth / 3) return this.handleLeftSwitch();
+    return this.handleExit();
   }
   handleTouchStart(e) {
     this.setState({ hasSwitched: false, touchDownX: e.touches[0].pageX });
@@ -27,21 +54,13 @@ export default class LightBoxSlider extends Component {
     const { touchOffset } = this.state;
     const indexOfCurrent = R.findIndex(R.propEq('$id', params.id), images);
     let offset = 0;
-    // if (touchOffset < 0) { offset = -0.001 }
-    // if (touchOffset > 0) { offset = 0.001 }
     if (touchOffset > window.innerWidth / 3) {
       offset = window.innerWidth;
-      setTimeout(() => {
-        if (indexOfCurrent < 1) return router.push(`/photos/${images[images.length - 1].$id}`);
-        return router.push(`/photos/${images[indexOfCurrent - 1].$id}`);
-      }, 300)
+      this.handleLeftSwitch(400);
     }
     if (touchOffset < -window.innerWidth / 3) {
       offset = -window.innerWidth;
-      setTimeout(() => {
-        if (indexOfCurrent > images.length - 1) return router.push(`/photos/${images[0].$id}`);
-        return router.push(`/photos/${images[indexOfCurrent + 1].$id}`);
-      }, 300)
+      this.handleRightSwitch(400);
     }
     this.setState({ touchDownX: 0, touchOffset: offset });
   }
@@ -49,12 +68,27 @@ export default class LightBoxSlider extends Component {
     const { touchDownX } = this.state;
     this.setState({ touchOffset: e.touches[0].pageX - touchDownX, movingLeft: (e.touches[0].pageX - touchDownX) < 0 });
   }
-  handleRest() {
-    console.log('rest');
+  handleRightSwitch(delay = 0) {
+    const { images, router, params } = this.props;
+    const indexOfCurrent = R.findIndex(R.propEq('$id', params.id.toString()), images);
+    if (indexOfCurrent > images.length - 2) return setTimeout(router.push(`/photos/${images[0].$id}`), delay);
+    return setTimeout(() => router.push(`/photos/${images[indexOfCurrent + 1].$id}`), delay);
+  }
+  handleLeftSwitch(delay = 0) {
+    const { images, router, params } = this.props;
+    const indexOfCurrent = R.findIndex(R.propEq('$id', params.id.toString()), images);
+    if (indexOfCurrent < 1) return setTimeout(router.push(`/photos/${images[images.length - 1].$id}`), delay);
+    return setTimeout(() => router.push(`/photos/${images[indexOfCurrent - 1].$id}`), delay);
+  }
+  handleExit() {
+    const { dispatch, router, params } = this.props;
+    router.push(`/`);
+    // Update lastSelected property in store to reflect the current url pic id
+    dispatch({ type: 'LAST_SELECTED', id: params.id });
   }
   render() {
     const { params, images } = this.props;
-    const { hasSwitched, touchOffset, movingLeft } = this.state;
+    const { mousePosition, hasSwitched, touchOffset, movingLeft } = this.state;
     // Index in images array of current image
     const indexOfCurrent = R.findIndex(R.propEq('$id', params.id), images);
     // Three Currently visible image ids
@@ -64,14 +98,18 @@ export default class LightBoxSlider extends Component {
       right: indexOfCurrent > (images.length - 2) ? images[0] : images[indexOfCurrent + 1]
     }
     const screenRatio = window.innerWidth / window.innerHeight;
-    // console.log(indexOfCurrent, visible);
-    console.log('touch offset', touchOffset);
+    // Set cursor css style
+    const wrapperStyle = () => {
+      if (mousePosition === 'mouse-middle') return { cursor: 'url(resources/icons/cancel.png),auto' }
+      else if (mousePosition === 'mouse-left') return { cursor: 'url(resources/icons/back.png),auto' }
+      else if (mousePosition === 'mouse-right') return { cursor: 'url(resources/icons/next.png),auto' }
+      return {};
+    };
     return (
-      <div style={{ overflow: 'hidden' }}>
-        <Motion defaultStyle={{ leftOffset: 0 }} style={{ leftOffset: hasSwitched ? 0 : spring(Math.abs(touchOffset)) }}>
+      <div style={wrapperStyle()} onClick={this.handleClick.bind(this)}>
+        <Motion defaultStyle={{ leftOffset: 0 }} style={{ leftOffset: hasSwitched ? 0 : spring(Math.abs(touchOffset), { stiffness: 180, damping: 25 }) }}>
           {({ leftOffset }) => (
-            <div style={{ overflow: 'hidden' }}>
-              {console.log('anim', movingLeft, leftOffset)}
+            <div>
               {
                 /* HIDDEN LEFT IMAGE */
                 <div
